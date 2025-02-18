@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR App</title>
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-app-pub-9151182030817748~5059854941",
+    enable_page_level_ads: true
+  });
+</script>
+<script src="https://cdn.startappnetwork.com/html5/latest/startapp.js"></script>
+<script>
+    startApp.setAppId("203435690");
+    startApp.init();
+</script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-app-pub-9151182030817748"
+     data-ad-slot="8099739800"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<style>
+    .notification {
+        display: none;
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px;
+        background-color: #ff4d4d; /* Red for error notification */
+        color: white;
+        border-radius: 5px;
+        z-index: 1000;
+    }
+</style>
+</head>
+<body>
+
+<div id="main-menu">
+    <button id="btn-generate-qr">Generate QR Code</button>
+    <button id="btn-scan-qr">Scan QR Code</button>
+</div>
+
+<div id="qr-generation-screen" class="hidden">
+    <div id="notification" class="notification">Network error. Please check your connection.</div>
+
+    <input type="text" id="qr-text" placeholder="Enter text to generate QR Code">
+    <button id="generate-qr">Generate QR Code</button>
+    <div id="qr-code"></div>
+    <button id="download-qr" class="hidden">Download QR Code</button>
+    <button class="back-to-menu">Back to Menu</button>
+</div>
+
+<div id="qr-scanning-screen" class="hidden">
+     <div style="width: 100%;" id="qr-reader"></div>
+     <input type="file" id="qr-file" accept="image/*">
+     <button id="btn-upload-qr">Upload QR Code</button>
+    <div id="qr-result"></div>
+    <a id="go-to-website-btn" class="hidden" target="_blank">Go to Website</a>
+    <button class="back-to-menu">Back to Menu</button>
+    
+</div>
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+<script src="https://unpkg.com/html5-qrcode"></script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+        .form-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        .uploaded-images {
+            margin-top: 40px;
+        }
+        .uploaded-images h3 {
+            text-align: center;
+            color: #333;
+        }
+        .image-item {
+            display: inline-block;
+            position: relative;
+            margin: 10px;
+        }
+        .image-item img {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .download-btn {
+            display: block;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 5px 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            border-radius: 4px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .download-btn:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-wrapper">
+        <h2>Upload Your Images</h2>
+        <form id="image_upload_form" method="post" enctype="multipart/form-data">
+            <div class="group">
+                <label for="image_upload">Select Image:</label>
+                <input type="file" id="image_upload" name="image_upload" accept="image/*" />
+            </div>
+            <div class="group" id="btn_group">
+                <input type="submit" value="Upload Image"/>
+            </div>
+        </form>
+    </div>
+
+    <div class="uploaded-images">
+        <h3>Your Uploaded Images</h3>
+        <div id="image_container"></div>
+    </div>
+
+    <script>
+        document.getElementById('image_upload_form').onsubmit = function(e) {
+            e.preventDefault();
+
+            var formData = new FormData();
+            var imageFile = document.getElementById('image_upload').files[0];
+
+            if (imageFile) {
+                formData.append('image_upload', imageFile);
+
+                // Simulate image upload by creating a FileReader
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var imageContainer = document.getElementById('image_container');
+                    
+                    // Create a new div for the uploaded image
+                    var imageItem = document.createElement('div');
+                    imageItem.className = 'image-item';
+
+                    // Create the image element
+                    var img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.alt = 'Uploaded Image';
+                    imageItem.appendChild(img);
+
+                    // Create the download button
+                    var downloadBtn = document.createElement('a');
+                    downloadBtn.className = 'download-btn';
+                    downloadBtn.innerText = 'Download';
+                    downloadBtn.href = e.target.result;
+                    downloadBtn.download = imageFile.name;
+                    imageItem.appendChild(downloadBtn);
+
+                    // Append the image item to the container
+                    imageContainer.appendChild(imageItem);
+                }
+                reader.readAsDataURL(imageFile);
+            }
+        }
+    </script>
+</body>
+</html>
